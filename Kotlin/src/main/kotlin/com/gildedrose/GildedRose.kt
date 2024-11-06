@@ -1,5 +1,6 @@
 package com.gildedrose
 
+import kotlin.math.max
 import kotlin.math.min
 
 class GildedRose(var items: List<Item>) {
@@ -23,7 +24,8 @@ class GildedRose(var items: List<Item>) {
                 }
 
                 else -> {
-
+                    updateGenericItem(item)
+                    continue
                 }
             }
 
@@ -105,6 +107,22 @@ private fun updateBackstagePass(item: Item) {
             sellIn <= 5 -> quality + 3
             sellIn <= 10 -> quality + 2
             else -> quality + 1
+        }
+    )
+    item.sellIn--
+}
+
+private fun updateGenericItem(item: Item) {
+    val sellIn = item.sellIn
+    val quality = item.quality
+
+    // The quality of an item is non-negative
+    item.quality = max(
+        0,
+        if (sellIn <= 0) {
+            quality - 2
+        } else {
+            quality - 1
         }
     )
     item.sellIn--
