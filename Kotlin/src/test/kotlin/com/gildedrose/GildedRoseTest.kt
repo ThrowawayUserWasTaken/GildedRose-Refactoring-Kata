@@ -48,6 +48,18 @@ internal class GildedRoseTest {
 
         assertEquals(expectedQuality, app.items[0].quality)
     }
+
+    @Test
+    fun `The quality of an item can not become negative`() {
+        val item = Item(name = "we-do-not-care", sellIn = 12, quality = 0)
+        val expectedQuality = item.quality
+
+        val items = listOf(item)
+        val app = GildedRose(items)
+        app.updateQuality()
+
+        assertEquals(expectedQuality, app.items[0].quality)
+    }
 }
 
 
