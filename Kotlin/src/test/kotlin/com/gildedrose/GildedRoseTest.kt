@@ -159,6 +159,21 @@ internal class GildedRoseTest {
         assertEquals(expectedQuality, app.items[0].quality)
     }
 
+    @Test
+    fun `The quality of a backstage pass caps at 50 when the sell-in data is 5 days or less`() {
+        val item = Item(
+            name = "Backstage passes to a TAFKAL80ETC concert",
+            sellIn = 3,
+            quality = 48,
+        )
+
+        val items = listOf(item)
+        val app = GildedRose(items)
+        app.updateQuality()
+
+        assertEquals(50, app.items[0].quality)
+    }
+
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4, 5])
     fun `The quality of a backstage pass increases by 3 when the sell-in data is 5 days or less`(
@@ -178,12 +193,28 @@ internal class GildedRoseTest {
         assertEquals(expectedQuality, app.items[0].quality)
     }
 
-    @Test
-    fun `The quality of a backstage pass is zero if the sell-in date is zero`() {
+    @ParameterizedTest
+    @ValueSource(ints = [-9000, -3, -2, -1, 0])
+    fun `The quality of a backstage pass is zero if the sell-in date is zero or less`(sellIn: Int) {
         val item = Item(
             name = "Backstage passes to a TAFKAL80ETC concert",
-            sellIn = 0,
+            sellIn = sellIn,
             quality = 10,
+        )
+
+        val items = listOf(item)
+        val app = GildedRose(items)
+        app.updateQuality()
+
+        assertEquals(0, app.items[0].quality)
+    }
+
+    @Test
+    fun `The quality of a backstage pass remains zero if the sell-in date is passed`() {
+        val item = Item(
+            name = "Backstage passes to a TAFKAL80ETC concert",
+            sellIn = -1,
+            quality = 0,
         )
 
         val items = listOf(item)
