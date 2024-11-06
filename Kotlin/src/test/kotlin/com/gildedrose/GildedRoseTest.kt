@@ -60,6 +60,18 @@ internal class GildedRoseTest {
 
         assertEquals(expectedQuality, app.items[0].quality)
     }
+
+    @Test
+    fun `The sell-in date always decreases by one when the quality is updated`() {
+        val item = Item(name = "we-do-not-care", sellIn = 12, quality = 0)
+        val expectedSellIn = item.sellIn - 1
+
+        val items = listOf(item)
+        val app = GildedRose(items)
+        app.updateQuality()
+
+        assertEquals(expectedSellIn, app.items[0].sellIn)
+    }
 }
 
 
