@@ -6,6 +6,11 @@ open class Item(var name: String, var sellIn: Int, var quality: Int) {
     }
 }
 
-const val AGED_BRIE_NAME = "Aged Brie"
-const val BACKSTAGE_PASS_NAME = "Backstage passes to a TAFKAL80ETC concert"
-const val SULFURAS_NAME = "Sulfuras, Hand of Ragnaros"
+internal const val AGED_BRIE_NAME = "Aged Brie"
+internal const val BACKSTAGE_PASS_NAME = "Backstage passes to a TAFKAL80ETC concert"
+internal const val SULFURAS_NAME = "Sulfuras, Hand of Ragnaros"
+
+private const val CONJURED_PREFIX = "Conjured"
+
+internal val Item.isConjuredItem
+    get() = name.startsWith(CONJURED_PREFIX)
