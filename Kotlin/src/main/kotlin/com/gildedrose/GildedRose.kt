@@ -6,7 +6,8 @@ class GildedRose(var items: List<Item>) {
         for (item in items) {
             when (item.name) {
                 AGED_BRIE_NAME -> {
-
+                    updateAgedBrie(item)
+                    continue
                 }
 
                 BACKSTAGE_PASS_NAME -> {
@@ -71,4 +72,14 @@ class GildedRose(var items: List<Item>) {
             }
         }
     }
+}
+
+/** Yeah, this could also be an extension method of some sort. */
+private fun updateAgedBrie(item: Item) {
+    require(item.name == AGED_BRIE_NAME) {
+        "This is a stinky situation: ${item.name} is not $AGED_BRIE_NAME"
+    }
+
+    if (item.quality < 50) item.quality++
+    item.sellIn--
 }
