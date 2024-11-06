@@ -139,6 +139,7 @@ internal class GildedRoseTest {
 
         assertEquals(expectedQuality, app.items[0].quality)
     }
+
     @ParameterizedTest
     @ValueSource(ints = [6, 7, 8, 9, 10])
     fun `The quality of a backstage pass increases by 2 when the sell-in data is 10 days or less`(
