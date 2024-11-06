@@ -18,7 +18,8 @@ class GildedRose(var items: List<Item>) {
                 }
 
                 SULFURAS_NAME -> {
-
+                    // The Sulfuras, Hand of Ragnaros is pure. Nothing changes
+                    continue
                 }
 
                 else -> {
