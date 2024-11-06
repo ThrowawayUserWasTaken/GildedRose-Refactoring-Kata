@@ -72,6 +72,18 @@ internal class GildedRoseTest {
 
         assertEquals(expectedSellIn, app.items[0].sellIn)
     }
+
+    @Test
+    fun `The quality of Aged Brie increases`() {
+        val item = Item(name = "Aged Brie", sellIn = 12, quality = 0)
+        val expectedQuality = item.quality + 1
+
+        val items = listOf(item)
+        val app = GildedRose(items)
+        app.updateQuality()
+
+        assertEquals(expectedQuality, app.items[0].quality)
+    }
 }
 
 
