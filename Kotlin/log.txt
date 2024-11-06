@@ -1,0 +1,1 @@
+Log to keep some notes. Will be updated to a slick Markdown file in the future (maybe).
