@@ -223,6 +223,24 @@ internal class GildedRoseTest {
 
         assertEquals(0, app.items[0].quality)
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = [-9000, -3, -2, -1, 0, 5, 23])
+    fun `The sell-in date of a backstage pass always moves back by one after the quality update`(
+        sellIn: Int
+    ) {
+        val item = Item(
+            name = "Backstage passes to a TAFKAL80ETC concert",
+            sellIn = sellIn,
+            quality = 0,
+        )
+
+        val items = listOf(item)
+        val app = GildedRose(items)
+        app.updateQuality()
+
+        assertEquals(sellIn - 1, app.items[0].sellIn)
+    }
 }
 
 

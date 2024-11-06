@@ -107,4 +107,5 @@ private fun updateBackstagePass(item: Item) {
             else -> quality + 1
         }
     )
+    item.sellIn--
 }
