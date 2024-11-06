@@ -23,3 +23,5 @@ tests for all these scenarios.
 Having added all the related tests, we can actually start to refactor some of his code.
 
 Whoops, forget the other ones did too! Reading is hard apparently.
+
+Final note for today. Just spent 4 pomodori working on this. It was fun. Will add conjured items later. See ya!
