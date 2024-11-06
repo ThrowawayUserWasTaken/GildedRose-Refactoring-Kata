@@ -89,7 +89,7 @@ internal class GildedRoseTest {
 
     @Test
     fun `The quality of Aged Brie does not increase over 50`() {
-        val item = AgedBrie(sellIn = 12, quality = 50)
+        val item = AgedBrie(sellIn = 12, quality = MAXIMAL_QUALITY)
         val expectedQuality = item.quality
 
         val items = listOf(item)
@@ -171,7 +171,7 @@ internal class GildedRoseTest {
         val app = GildedRose(items)
         app.updateQuality()
 
-        assertEquals(50, app.items[0].quality)
+        assertEquals(MAXIMAL_QUALITY, app.items[0].quality)
     }
 
     @ParameterizedTest
