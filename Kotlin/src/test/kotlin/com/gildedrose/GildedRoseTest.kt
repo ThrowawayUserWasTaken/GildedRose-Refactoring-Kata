@@ -2,6 +2,8 @@ package com.gildedrose
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class GildedRoseTest {
 
@@ -121,6 +123,73 @@ internal class GildedRoseTest {
         app.updateQuality()
 
         assertEquals(expectedSellIn, app.items[0].sellIn)
+    }
+    @Test
+    fun `The quality of a backstage pass increases by 1 when the sell-in data is more than 10 days`() {
+        val item = Item(
+            name = "Backstage passes to a TAFKAL80ETC concert",
+            sellIn = 11,
+            quality = 10,
+        )
+        val expectedQuality = item.quality + 1
+
+        val items = listOf(item)
+        val app = GildedRose(items)
+        app.updateQuality()
+
+        assertEquals(expectedQuality, app.items[0].quality)
+    }
+    @ParameterizedTest
+    @ValueSource(ints = [6, 7, 8, 9, 10])
+    fun `The quality of a backstage pass increases by 2 when the sell-in data is 10 days or less`(
+        sellIn: Int,
+    ) {
+        val item = Item(
+            name = "Backstage passes to a TAFKAL80ETC concert",
+            sellIn = sellIn,
+            quality = 10,
+        )
+        val expectedQuality = item.quality + 2
+
+        val items = listOf(item)
+        val app = GildedRose(items)
+        app.updateQuality()
+
+        assertEquals(expectedQuality, app.items[0].quality)
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [1, 2, 3, 4, 5])
+    fun `The quality of a backstage pass increases by 3 when the sell-in data is 5 days or less`(
+        sellIn: Int,
+    ) {
+        val item = Item(
+            name = "Backstage passes to a TAFKAL80ETC concert",
+            sellIn = sellIn,
+            quality = 10,
+        )
+        val expectedQuality = item.quality + 3
+
+        val items = listOf(item)
+        val app = GildedRose(items)
+        app.updateQuality()
+
+        assertEquals(expectedQuality, app.items[0].quality)
+    }
+
+    @Test
+    fun `The quality of a backstage pass is zero if the sell-in date is zero`() {
+        val item = Item(
+            name = "Backstage passes to a TAFKAL80ETC concert",
+            sellIn = 0,
+            quality = 10,
+        )
+
+        val items = listOf(item)
+        val app = GildedRose(items)
+        app.updateQuality()
+
+        assertEquals(0, app.items[0].quality)
     }
 }
 

@@ -21,3 +21,5 @@ tests for all these scenarios.
 - "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
 
 Having added all the related tests, we can actually start to refactor some of his code.
+
+Whoops, forget the other ones did too! Reading is hard apparently.
