@@ -7,11 +7,10 @@ internal class GildedRoseTest {
 
     @Test
     fun foo() {
-        val name = "foo"
-        val items = listOf(Item(name, 0, 0))
+        val items = listOf(TEST_ITEM)
         val app = GildedRose(items)
         app.updateQuality()
-        assertEquals(name, app.items[0].name)
+        assertEquals(TEST_ITEM_NAME, app.items[0].name)
     }
 }
 
