@@ -97,9 +97,8 @@ internal class GildedRoseTest {
         assertEquals(expectedQuality, app.items[0].quality)
     }
 
-
     @Test
-    fun `The quality of Sulfuras is consistent`(){
+    fun `The quality of Sulfuras is consistent`() {
         // Yeah, the quality of this item is not set to 80. Will do so later
         val item = Item(name = "Sulfuras, Hand of Ragnaros", sellIn = 12, quality = 9000)
         val expectedQuality = item.quality
@@ -109,6 +108,19 @@ internal class GildedRoseTest {
         app.updateQuality()
 
         assertEquals(expectedQuality, app.items[0].quality)
+    }
+
+    @Test
+    fun `The sell-in date of Sulfuras does not change`() {
+        // Yeah, the quality of this item is not set to 80. Will do so later
+        val item = Item(name = "Sulfuras, Hand of Ragnaros", sellIn = 99, quality = 9000)
+        val expectedSellIn = item.sellIn
+
+        val items = listOf(item)
+        val app = GildedRose(items)
+        app.updateQuality()
+
+        assertEquals(expectedSellIn, app.items[0].sellIn)
     }
 }
 
