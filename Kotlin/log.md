@@ -6,3 +6,7 @@
 Every task defined in the [requirements](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/GildedRoseRequirements.md)
 should be a separate branch, so every PR could run the pipelines to assume quality. For now, that's 
 totally overkill.
+
+## Reflection
+I like small commits. I want every commit to be a working state of the app. Add tests first, then 
+fix the code, then refactor. We will take that approach here.
