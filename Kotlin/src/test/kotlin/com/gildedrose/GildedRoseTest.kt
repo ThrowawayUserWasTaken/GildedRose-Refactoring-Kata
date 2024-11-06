@@ -24,6 +24,30 @@ internal class GildedRoseTest {
 
         assertEquals(expectedQuality, app.items[0].quality)
     }
+
+    @Test
+    fun `Given an item where the sell in date passes today, Then the quality degrades by one`() {
+        val item = Item(name = "we-do-not-care", sellIn = 1, quality = 4)
+        val expectedQuality = item.quality - 1
+
+        val items = listOf(item)
+        val app = GildedRose(items)
+        app.updateQuality()
+
+        assertEquals(expectedQuality, app.items[0].quality)
+    }
+
+    @Test
+    fun `Given an item where the sell in date is passed, Then the quality degrades by two`() {
+        val item = Item(name = "we-do-not-care", sellIn = 0, quality = 4)
+        val expectedQuality = item.quality - 2
+
+        val items = listOf(item)
+        val app = GildedRose(items)
+        app.updateQuality()
+
+        assertEquals(expectedQuality, app.items[0].quality)
+    }
 }
 
 
