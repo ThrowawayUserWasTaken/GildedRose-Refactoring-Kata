@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test
 internal class ItemTest {
 
     @Test
-    fun `The item is conjured if it starts with Conjured`() {
+    fun `An item is conjured if its name starts with Conjured`() {
         val item = Item(name = "Conjured Mountain Dew", sellIn = 900, quality = 21)
-        assertTrue(item.isConjuredItem)
+        assertTrue(item.isConjured)
     }
 
     @Test
-    fun `The item is not conjured if it does not start with Conjured`() {
+    fun `An item is not conjured if its name does not start with Conjured`() {
         val item = Item(name = "Mountain Dew", sellIn = 900, quality = 20)
-        assertFalse(item.isConjuredItem)
+        assertFalse(item.isConjured)
     }
 }

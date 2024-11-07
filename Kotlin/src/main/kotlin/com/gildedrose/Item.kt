@@ -12,5 +12,5 @@ internal const val SULFURAS_NAME = "Sulfuras, Hand of Ragnaros"
 
 private const val CONJURED_PREFIX = "Conjured"
 
-internal val Item.isConjuredItem
+internal val Item.isConjured
     get() = name.startsWith(CONJURED_PREFIX)
