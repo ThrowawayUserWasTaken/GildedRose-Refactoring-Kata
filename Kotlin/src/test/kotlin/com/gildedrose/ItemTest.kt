@@ -312,11 +312,9 @@ internal class ItemTest {
             val item = Item(name = "we-do-not-care", sellIn = 12, quality = 4)
             val expectedQuality = item.quality - 1
 
-            val items = listOf(item)
-            val app = GildedRose(items)
-            app.updateQuality()
+            updateGenericItem(item = item)
 
-            assertEquals(expectedQuality, app.items[0].quality)
+            assertEquals(expectedQuality, item.quality)
         }
 
         @Test
@@ -324,11 +322,9 @@ internal class ItemTest {
             val item = Item(name = "we-do-not-care", sellIn = 1, quality = 4)
             val expectedQuality = item.quality - 1
 
-            val items = listOf(item)
-            val app = GildedRose(items)
-            app.updateQuality()
+            updateGenericItem(item = item)
 
-            assertEquals(expectedQuality, app.items[0].quality)
+            assertEquals(expectedQuality, item.quality)
         }
 
         @ParameterizedTest
@@ -339,11 +335,9 @@ internal class ItemTest {
             val item = Item(name = "we-do-not-care", sellIn = sellIn, quality = 4)
             val expectedQuality = item.quality - 2
 
-            val items = listOf(item)
-            val app = GildedRose(items)
-            app.updateQuality()
+            updateGenericItem(item = item)
 
-            assertEquals(expectedQuality, app.items[0].quality)
+            assertEquals(expectedQuality, item.quality)
         }
 
         @ParameterizedTest
@@ -352,11 +346,9 @@ internal class ItemTest {
             val item = Item(name = "we-do-not-care", sellIn = sellIn, quality = 0)
             val expectedQuality = item.quality
 
-            val items = listOf(item)
-            val app = GildedRose(items)
-            app.updateQuality()
+            updateGenericItem(item = item)
 
-            assertEquals(expectedQuality, app.items[0].quality)
+            assertEquals(expectedQuality, item.quality)
         }
 
         @Test
@@ -364,11 +356,9 @@ internal class ItemTest {
             val item = Item(name = "we-do-not-care", sellIn = 12, quality = 0)
             val expectedSellIn = item.sellIn - 1
 
-            val items = listOf(item)
-            val app = GildedRose(items)
-            app.updateQuality()
+            updateGenericItem(item = item)
 
-            assertEquals(expectedSellIn, app.items[0].sellIn)
+            assertEquals(expectedSellIn, item.sellIn)
         }
     }
 }
