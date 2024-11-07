@@ -236,7 +236,7 @@ internal class ItemTest {
                 sellIn = 11,
                 quality = 10,
             )
-            
+
             val exception = assertThrows<IllegalArgumentException> {
                 item.updateBackstagePass()
             }
@@ -257,11 +257,9 @@ internal class ItemTest {
             val item = Item(name = SULFURAS_NAME, sellIn = 12, quality = SULFURAS_QUALITY)
             val expectedQuality = item.quality
 
-            val items = listOf(item)
-            val app = GildedRose(items)
-            app.updateQuality()
+            item.verifySulfuras()
 
-            assertEquals(expectedQuality, app.items[0].quality)
+            assertEquals(expectedQuality, item.quality)
         }
 
         @Test
@@ -299,11 +297,9 @@ internal class ItemTest {
             val item = Item(name = SULFURAS_NAME, sellIn = 12, quality = SULFURAS_QUALITY)
             val expectedSellIn = item.sellIn
 
-            val items = listOf(item)
-            val app = GildedRose(items)
-            app.updateQuality()
+            item.verifySulfuras()
 
-            assertEquals(expectedSellIn, app.items[0].sellIn)
+            assertEquals(expectedSellIn, item.sellIn)
         }
     }
 
