@@ -26,9 +26,23 @@ Whoops, forget the other ones did too! Reading is hard apparently.
 
 Final note for today. Just spent 4 pomodori working on this. It was fun. Will add conjured items later. See ya!
 
-## Notes for November 7th
+# Notes for November 7th
 After some coding, my MacBook died. Luckily, the commits are very small and in sync with remote, so
 it would not have been a big issue. That's the benefit of small commits.
 
 For context, my approach to changes is: commit quick little chunks. Rebasing or squashing (my preference) 
 can always be done after.
+
+## Now what?
+There are shared properties for all items, and for almost all items, the sell-in date decreases by 
+one after updating the quality. The way I've set it up now, all items have their own quality update,
+which you could argue is overkill. But I think it's better, and I have my reasoning.
+
+// TODO: update this reasoning a bit more
+### The business rules are defined for specific items
+The decreasing of the sell-in date could maybe be done for all items in one method. However, you 
+mustn't forget the Sulfuras is pure and so its sell-in data does not decrease. You could always
+account for that in a shared `decreaseSellIn()` method and test accordingly.
+
+However, you also need to take the sell-in date into account for updating the quality of an item. So
+having a separate sell-in method would be an afterthought.
