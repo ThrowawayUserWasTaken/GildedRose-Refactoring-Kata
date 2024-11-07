@@ -33,6 +33,10 @@ it would not have been a big issue. That's the benefit of small commits.
 For context, my approach to changes is: commit quick little chunks. Rebasing or squashing (my preference) 
 can always be done after.
 
+## To do for now
+[ ] Enforce 80 quality on Sulfarases
+[ ] Replace all names of items with the defined constants
+
 ## Now what?
 There are shared properties for all items, and for almost all items, the sell-in date decreases by 
 one after updating the quality. The way I've set it up now, all items have their own quality update,
