@@ -38,11 +38,9 @@ internal class ItemTest {
                 quality = 0,
             )
 
-            val items = listOf(item)
-            val app = GildedRose(items)
-            app.updateQuality()
+            updateConjuredItem(item)
 
-            assertEquals(sellIn - 1, app.items[0].sellIn)
+            assertEquals(sellIn - 1, item.sellIn)
         }
 
         @ParameterizedTest
@@ -51,11 +49,9 @@ internal class ItemTest {
             val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 0)
             val expectedQuality = item.quality
 
-            val items = listOf(item)
-            val app = GildedRose(items)
-            app.updateQuality()
+            updateConjuredItem(item)
 
-            assertEquals(expectedQuality, app.items[0].quality)
+            assertEquals(expectedQuality, item.quality)
         }
 
         @ParameterizedTest
@@ -64,11 +60,9 @@ internal class ItemTest {
             val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 8)
             val expectedQuality = item.quality - 2
 
-            val items = listOf(item)
-            val app = GildedRose(items)
-            app.updateQuality()
+            updateConjuredItem(item)
 
-            assertEquals(expectedQuality, app.items[0].quality)
+            assertEquals(expectedQuality, item.quality)
         }
 
         @ParameterizedTest
@@ -77,11 +71,9 @@ internal class ItemTest {
             val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 8)
             val expectedQuality = item.quality - 4
 
-            val items = listOf(item)
-            val app = GildedRose(items)
-            app.updateQuality()
+            updateConjuredItem(item)
 
-            assertEquals(expectedQuality, app.items[0].quality)
+            assertEquals(expectedQuality, item.quality)
         }
     }
 
