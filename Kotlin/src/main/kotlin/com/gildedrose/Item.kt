@@ -22,7 +22,7 @@ internal const val MAXIMAL_QUALITY = 50
 internal const val SULFURAS_QUALITY = 80
 
 /** Yeah, this could also be an extension method of some sort. */
-internal fun Item.updateAgedBrie() {
+internal fun Item.updateAgedBrieQuality() {
     require(name == AGED_BRIE_NAME) {
         "This is a stinky situation: ${name} is not $AGED_BRIE_NAME"
     }
@@ -31,7 +31,7 @@ internal fun Item.updateAgedBrie() {
     sellIn--
 }
 
-internal fun Item.updateBackstagePass() {
+internal fun Item.updateBackstagePassQuality() {
     require(name == BACKSTAGE_PASS_NAME) {
         "You can hear something is off: $name does not sound like $BACKSTAGE_PASS_NAME to me!"
     }
@@ -49,7 +49,7 @@ internal fun Item.updateBackstagePass() {
     sellIn--
 }
 
-internal fun Item.updateConjuredItem() {
+internal fun Item.updateConjuredItemQuality() {
     require(isConjured) {
         "What's so special about ${name}? That's is not magical!"
     }

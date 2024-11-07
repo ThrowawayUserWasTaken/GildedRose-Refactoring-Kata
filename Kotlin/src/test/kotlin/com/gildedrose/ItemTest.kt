@@ -37,7 +37,7 @@ internal class ItemTest {
                 quality = 0,
             )
 
-            item.updateConjuredItem()
+            item.updateConjuredItemQuality()
 
             assertEquals(sellIn - 1, item.sellIn)
         }
@@ -48,7 +48,7 @@ internal class ItemTest {
             val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 0)
             val expectedQuality = item.quality
 
-            item.updateConjuredItem()
+            item.updateConjuredItemQuality()
 
             assertEquals(expectedQuality, item.quality)
         }
@@ -59,7 +59,7 @@ internal class ItemTest {
             val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 8)
             val expectedQuality = item.quality - 2
 
-            item.updateConjuredItem()
+            item.updateConjuredItemQuality()
 
             assertEquals(expectedQuality, item.quality)
         }
@@ -70,7 +70,7 @@ internal class ItemTest {
             val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 8)
             val expectedQuality = item.quality - 4
 
-            item.updateConjuredItem()
+            item.updateConjuredItemQuality()
 
             assertEquals(expectedQuality, item.quality)
         }
@@ -85,7 +85,7 @@ internal class ItemTest {
             val item = Item(name = AGED_BRIE_NAME, sellIn = 12, quality = 0)
             val expectedQuality = item.quality + 1
 
-            item.updateAgedBrie()
+            item.updateAgedBrieQuality()
 
             assertEquals(expectedQuality, item.quality)
         }
@@ -95,7 +95,7 @@ internal class ItemTest {
             val item = Item(name = AGED_BRIE_NAME, sellIn = 12, quality = MAXIMAL_QUALITY)
             val expectedQuality = item.quality
 
-            item.updateAgedBrie()
+            item.updateAgedBrieQuality()
 
             assertEquals(expectedQuality, item.quality)
         }
@@ -110,7 +110,7 @@ internal class ItemTest {
             )
 
             val exception = assertThrows<IllegalArgumentException> {
-                item.updateAgedBrie()
+                item.updateAgedBrieQuality()
             }
 
             /**
@@ -137,7 +137,7 @@ internal class ItemTest {
             )
             val expectedQuality = item.quality + 1
 
-            item.updateBackstagePass()
+            item.updateBackstagePassQuality()
 
             assertEquals(expectedQuality, item.quality)
         }
@@ -154,7 +154,7 @@ internal class ItemTest {
             )
             val expectedQuality = item.quality + 2
 
-            item.updateBackstagePass()
+            item.updateBackstagePassQuality()
 
             assertEquals(expectedQuality, item.quality)
         }
@@ -167,7 +167,7 @@ internal class ItemTest {
                 quality = 48,
             )
 
-            item.updateBackstagePass()
+            item.updateBackstagePassQuality()
 
             assertEquals(MAXIMAL_QUALITY, item.quality)
         }
@@ -182,7 +182,7 @@ internal class ItemTest {
             )
             val expectedQuality = item.quality + 3
 
-            item.updateBackstagePass()
+            item.updateBackstagePassQuality()
 
             assertEquals(expectedQuality, item.quality)
         }
@@ -196,7 +196,7 @@ internal class ItemTest {
                 quality = 10,
             )
 
-            item.updateBackstagePass()
+            item.updateBackstagePassQuality()
 
             assertEquals(0, item.quality)
         }
@@ -209,7 +209,7 @@ internal class ItemTest {
                 quality = 0,
             )
 
-            item.updateBackstagePass()
+            item.updateBackstagePassQuality()
 
             assertEquals(0, item.quality)
         }
@@ -223,7 +223,7 @@ internal class ItemTest {
                 quality = 0,
             )
 
-            item.updateBackstagePass()
+            item.updateBackstagePassQuality()
 
             assertEquals(sellIn - 1, item.sellIn)
         }
@@ -238,7 +238,7 @@ internal class ItemTest {
             )
 
             val exception = assertThrows<IllegalArgumentException> {
-                item.updateBackstagePass()
+                item.updateBackstagePassQuality()
             }
 
             assertEquals(
