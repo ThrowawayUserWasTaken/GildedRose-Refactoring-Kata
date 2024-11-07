@@ -312,7 +312,7 @@ internal class ItemTest {
             val item = Item(name = "we-do-not-care", sellIn = 12, quality = 4)
             val expectedQuality = item.quality - 1
 
-            updateGenericItem(item = item)
+            item.updateGenericItemQuality()
 
             assertEquals(expectedQuality, item.quality)
         }
@@ -322,7 +322,7 @@ internal class ItemTest {
             val item = Item(name = "we-do-not-care", sellIn = 1, quality = 4)
             val expectedQuality = item.quality - 1
 
-            updateGenericItem(item = item)
+            item.updateGenericItemQuality()
 
             assertEquals(expectedQuality, item.quality)
         }
@@ -335,7 +335,7 @@ internal class ItemTest {
             val item = Item(name = "we-do-not-care", sellIn = sellIn, quality = 4)
             val expectedQuality = item.quality - 2
 
-            updateGenericItem(item = item)
+            item.updateGenericItemQuality()
 
             assertEquals(expectedQuality, item.quality)
         }
@@ -346,7 +346,7 @@ internal class ItemTest {
             val item = Item(name = "we-do-not-care", sellIn = sellIn, quality = 0)
             val expectedQuality = item.quality
 
-            updateGenericItem(item = item)
+            item.updateGenericItemQuality()
 
             assertEquals(expectedQuality, item.quality)
         }
@@ -356,7 +356,7 @@ internal class ItemTest {
             val item = Item(name = "we-do-not-care", sellIn = 12, quality = 0)
             val expectedSellIn = item.sellIn - 1
 
-            updateGenericItem(item = item)
+            item.updateGenericItemQuality()
 
             assertEquals(expectedSellIn, item.sellIn)
         }

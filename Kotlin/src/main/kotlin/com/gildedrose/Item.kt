@@ -78,12 +78,9 @@ internal fun Item.verifySulfuras() {
     }
 }
 
-internal fun updateGenericItem(item: Item) {
-    val sellIn = item.sellIn
-    val quality = item.quality
-
+internal fun Item.updateGenericItemQuality() {
     // The quality of an item is non-negative
-    item.quality = max(
+    quality = max(
         0,
         if (sellIn <= 0) {
             quality - 2
@@ -91,5 +88,5 @@ internal fun updateGenericItem(item: Item) {
             quality - 1
         }
     )
-    item.sellIn--
+    sellIn--
 }

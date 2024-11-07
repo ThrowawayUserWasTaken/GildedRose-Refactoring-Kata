@@ -12,7 +12,7 @@ class GildedRose(var items: List<Item>) {
                     BACKSTAGE_PASS_NAME -> item.updateBackstagePass()
                     // We only verify Sulfuras, Hand of Ragnaros
                     SULFURAS_NAME -> item.verifySulfuras()
-                    else -> updateGenericItem(item)
+                    else -> item.updateGenericItemQuality()
                 }
             }
         }
