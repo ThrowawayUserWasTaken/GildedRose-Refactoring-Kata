@@ -132,7 +132,7 @@ internal class GildedRoseTest {
     @Test
     fun `The quality of a backstage pass increases by 1 when the sell-in data is more than 10 days`() {
         val item = Item(
-            name = "Backstage passes to a TAFKAL80ETC concert",
+            name = BACKSTAGE_PASS_NAME,
             sellIn = 11,
             quality = 10,
         )
@@ -151,7 +151,7 @@ internal class GildedRoseTest {
         sellIn: Int,
     ) {
         val item = Item(
-            name = "Backstage passes to a TAFKAL80ETC concert",
+            name = BACKSTAGE_PASS_NAME,
             sellIn = sellIn,
             quality = 10,
         )
@@ -167,7 +167,7 @@ internal class GildedRoseTest {
     @Test
     fun `The quality of a backstage pass caps at 50 when the sell-in data is 5 days or less`() {
         val item = Item(
-            name = "Backstage passes to a TAFKAL80ETC concert",
+            name = BACKSTAGE_PASS_NAME,
             sellIn = 3,
             quality = 48,
         )
@@ -185,7 +185,7 @@ internal class GildedRoseTest {
         sellIn: Int,
     ) {
         val item = Item(
-            name = "Backstage passes to a TAFKAL80ETC concert",
+            name = BACKSTAGE_PASS_NAME,
             sellIn = sellIn,
             quality = 10,
         )
@@ -202,7 +202,7 @@ internal class GildedRoseTest {
     @ValueSource(ints = [-9000, -3, -2, -1, 0])
     fun `The quality of a backstage pass is zero if the sell-in date is zero or less`(sellIn: Int) {
         val item = Item(
-            name = "Backstage passes to a TAFKAL80ETC concert",
+            name = BACKSTAGE_PASS_NAME,
             sellIn = sellIn,
             quality = 10,
         )
@@ -217,7 +217,7 @@ internal class GildedRoseTest {
     @Test
     fun `The quality of a backstage pass remains zero if the sell-in date is passed`() {
         val item = Item(
-            name = "Backstage passes to a TAFKAL80ETC concert",
+            name = BACKSTAGE_PASS_NAME,
             sellIn = -1,
             quality = 0,
         )
@@ -235,7 +235,7 @@ internal class GildedRoseTest {
         sellIn: Int
     ) {
         val item = Item(
-            name = "Backstage passes to a TAFKAL80ETC concert",
+            name = BACKSTAGE_PASS_NAME,
             sellIn = sellIn,
             quality = 0,
         )

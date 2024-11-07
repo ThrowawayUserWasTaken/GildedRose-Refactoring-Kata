@@ -35,7 +35,8 @@ can always be done after.
 
 ## To do for now
 [x] Enforce 80 quality on Sulfarases
-[ ] Replace all names of items with the defined constants
+[x] Replace all names of items with the defined constants
+[ ] Extract quality update to make Gilded Rose test easier to read
 
 ## Now what?
 There are shared properties for all items, and for almost all items, the sell-in date decreases by 
