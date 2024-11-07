@@ -25,3 +25,10 @@ Having added all the related tests, we can actually start to refactor some of hi
 Whoops, forget the other ones did too! Reading is hard apparently.
 
 Final note for today. Just spent 4 pomodori working on this. It was fun. Will add conjured items later. See ya!
+
+## Notes for November 7th
+After some coding, my MacBook died. Luckily, the commits are very small and in sync with remote, so
+it would not have been a big issue. That's the benefit of small commits.
+
+For context, my approach to changes is: commit quick little chunks. Rebasing or squashing (my preference) 
+can always be done after.
