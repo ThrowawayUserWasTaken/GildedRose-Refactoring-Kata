@@ -36,13 +36,13 @@ can always be done after.
 ## To do for now
 [x] Enforce 80 quality on Sulfarases
 [x] Replace all names of items with the defined constants
-[ ] Extract quality update to make Gilded Rose test easier to read
+[x] Extract quality update to make Gilded Rose test easier to read
     [x] `updateBackstagePass`
-    [ ] `updateGenericItem`
+    [x] `updateGenericItem`
 [ ] Finalize everything with a reflection on this exercise
 [ ] Add docs to quality. It is between 0 and 50, except for certain items
 
-Time log: 1:30 on the first two tasks and some more (undefined) work
+Time log: 2:00 today
 
 ## Now what?
 There are shared properties for all items, and for almost all items, the sell-in date decreases by 
