@@ -267,5 +267,44 @@ internal class GildedRoseTest {
 
             assertEquals(sellIn - 1, app.items[0].sellIn)
         }
+
+        @ParameterizedTest
+        @ValueSource(ints = [-5, 0, 5])
+        fun `The quality can not become negative`(sellIn: Int) {
+            val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 0)
+            val expectedQuality = item.quality
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(expectedQuality, app.items[0].quality)
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = [1, 12])
+        fun `The quality degrades by two if the sell-in date is more than 0`(sellIn: Int) {
+            val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 8)
+            val expectedQuality = item.quality - 2
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(expectedQuality, app.items[0].quality)
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = [-1, 0])
+        fun `The quality degrades by four if the sell-in date is zero or less`(sellIn: Int) {
+            val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 8)
+            val expectedQuality = item.quality - 4
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(expectedQuality, app.items[0].quality)
+        }
     }
 }

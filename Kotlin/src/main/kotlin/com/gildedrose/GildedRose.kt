@@ -61,6 +61,19 @@ private fun updateConjuredItem(item: Item) {
         "What's so special about ${item.name}? That's is not magical!"
     }
 
+    val sellIn = item.sellIn
+    val quality = item.quality
+
+    // The quality of an item is non-negative
+    item.quality = max(
+        0,
+        if (sellIn <= 0) {
+            quality - 4
+        } else {
+            quality - 2
+        }
+    )
+
     item.sellIn--
 }
 
