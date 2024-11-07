@@ -28,7 +28,6 @@ internal class ItemTest {
             assertFalse(item.isConjured)
         }
 
-        // TODO: wait! We are now testing the items through the app. Fix this!
         @ParameterizedTest
         @ValueSource(ints = [-9000, -3, -2, -1, 0, 5, 23])
         fun `The sell-in date always decreases by one after a quality update`(sellIn: Int) {
@@ -38,7 +37,7 @@ internal class ItemTest {
                 quality = 0,
             )
 
-            updateConjuredItem(item)
+            item.updateConjuredItem()
 
             assertEquals(sellIn - 1, item.sellIn)
         }
@@ -49,7 +48,7 @@ internal class ItemTest {
             val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 0)
             val expectedQuality = item.quality
 
-            updateConjuredItem(item)
+            item.updateConjuredItem()
 
             assertEquals(expectedQuality, item.quality)
         }
@@ -60,7 +59,7 @@ internal class ItemTest {
             val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 8)
             val expectedQuality = item.quality - 2
 
-            updateConjuredItem(item)
+            item.updateConjuredItem()
 
             assertEquals(expectedQuality, item.quality)
         }
@@ -71,7 +70,7 @@ internal class ItemTest {
             val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 8)
             val expectedQuality = item.quality - 4
 
-            updateConjuredItem(item)
+            item.updateConjuredItem()
 
             assertEquals(expectedQuality, item.quality)
         }

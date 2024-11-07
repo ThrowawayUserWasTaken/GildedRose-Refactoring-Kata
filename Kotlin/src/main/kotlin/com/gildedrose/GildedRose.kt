@@ -5,7 +5,7 @@ class GildedRose(var items: List<Item>) {
     fun updateQuality() {
         for (item in items) {
             if (item.isConjured) {
-                updateConjuredItem(item)
+                item.updateConjuredItem()
             } else {
                 when (item.name) {
                     AGED_BRIE_NAME -> item.updateAgedBrie()

@@ -51,16 +51,13 @@ internal fun updateBackstagePass(item: Item) {
     item.sellIn--
 }
 
-internal fun updateConjuredItem(item: Item) {
-    require(item.isConjured) {
-        "What's so special about ${item.name}? That's is not magical!"
+internal fun Item.updateConjuredItem() {
+    require(isConjured) {
+        "What's so special about ${name}? That's is not magical!"
     }
 
-    val sellIn = item.sellIn
-    val quality = item.quality
-
     // The quality of an item is non-negative
-    item.quality = max(
+    quality = max(
         0,
         if (sellIn <= 0) {
             quality - 4
@@ -68,8 +65,7 @@ internal fun updateConjuredItem(item: Item) {
             quality - 2
         }
     )
-
-    item.sellIn--
+    sellIn--
 }
 
 internal fun updateGenericItem(item: Item) {
