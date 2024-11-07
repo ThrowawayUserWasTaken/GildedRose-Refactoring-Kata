@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -93,11 +94,9 @@ internal class ItemTest {
             val item = Item(name = AGED_BRIE_NAME, sellIn = 12, quality = 0)
             val expectedQuality = item.quality + 1
 
-            val items = listOf(item)
-            val app = GildedRose(items)
-            app.updateQuality()
+            item.updateAgedBrie()
 
-            assertEquals(expectedQuality, app.items[0].quality)
+            assertEquals(expectedQuality, item.quality)
         }
 
         @Test
@@ -105,11 +104,32 @@ internal class ItemTest {
             val item = Item(name = AGED_BRIE_NAME, sellIn = 12, quality = MAXIMAL_QUALITY)
             val expectedQuality = item.quality
 
-            val items = listOf(item)
-            val app = GildedRose(items)
-            app.updateQuality()
+            item.updateAgedBrie()
 
-            assertEquals(expectedQuality, app.items[0].quality)
+            assertEquals(expectedQuality, item.quality)
+        }
+
+        @Test
+        fun `It will only handle aged brie`() {
+            val name = "Ceci n'est pas Aged Brie"
+            val item = Item(
+                name = name,
+                sellIn = 12,
+                quality = MAXIMAL_QUALITY,
+            )
+
+            val exception = assertThrows<IllegalArgumentException> {
+                item.updateAgedBrie()
+            }
+
+            /**
+             * Yes, there is some code duplication. You could always extract the error message to a
+             * separate value or method. However, for this kata, this suffices.
+             */
+            assertEquals(
+                "This is a stinky situation: $name is not $AGED_BRIE_NAME",
+                exception.message
+            )
         }
     }
 }
