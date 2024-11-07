@@ -37,6 +37,9 @@ can always be done after.
 [x] Enforce 80 quality on Sulfarases
 [x] Replace all names of items with the defined constants
 [ ] Extract quality update to make Gilded Rose test easier to read
+[ ] Finalize everything with a reflection on this exercise
+
+Time log: 1:15 on the first two tasks and some more (undefined) work
 
 ## Now what?
 There are shared properties for all items, and for almost all items, the sell-in date decreases by 
@@ -51,3 +54,4 @@ account for that in a shared `decreaseSellIn()` method and test accordingly.
 
 However, you also need to take the sell-in date into account for updating the quality of an item. So
 having a separate sell-in method would be an afterthought.
+
