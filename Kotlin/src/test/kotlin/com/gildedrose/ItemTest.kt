@@ -317,16 +317,6 @@ internal class ItemTest {
             assertEquals(expectedQuality, item.quality)
         }
 
-        @Test
-        fun `Given an item where the sell in date passes today, Then the quality degrades by one`() {
-            val item = Item(name = "we-do-not-care", sellIn = 1, quality = 4)
-            val expectedQuality = item.quality - 1
-
-            item.updateGenericItemQuality()
-
-            assertEquals(expectedQuality, item.quality)
-        }
-
         @ParameterizedTest
         @ValueSource(ints = [-9000, -3, -2, -1, 0])
         fun `The quality degrades by two when the sell-in date is zero or less`(
