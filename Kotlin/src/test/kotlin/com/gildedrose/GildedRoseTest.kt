@@ -1,6 +1,8 @@
 package com.gildedrose
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -245,6 +247,25 @@ internal class GildedRoseTest {
 
         assertEquals(sellIn - 1, app.items[0].sellIn)
     }
+
+    @Nested
+    @DisplayName("For a conjured item")
+    inner class ConjuredItemTest {
+
+        @ParameterizedTest
+        @ValueSource(ints = [-9000, -3, -2, -1, 0, 5, 23])
+        fun `The sell-in date always decreases by one after a quality update`(sellIn: Int) {
+            val item = Item(
+                name = CONJURED_ITEM_NAME,
+                sellIn = sellIn,
+                quality = 0,
+            )
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(sellIn - 1, app.items[0].sellIn)
+        }
+    }
 }
-
-

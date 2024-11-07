@@ -7,14 +7,18 @@ class GildedRose(var items: List<Item>) {
 
     fun updateQuality() {
         for (item in items) {
-            when (item.name) {
-                AGED_BRIE_NAME -> updateAgedBrie(item)
-                BACKSTAGE_PASS_NAME -> updateBackstagePass(item)
-                SULFURAS_NAME -> {
-                    // The Sulfuras, Hand of Ragnaros is pure. Nothing changes
-                }
+            if (item.isConjured) {
+                updateConjuredItem(item)
+            } else {
+                when (item.name) {
+                    AGED_BRIE_NAME -> updateAgedBrie(item)
+                    BACKSTAGE_PASS_NAME -> updateBackstagePass(item)
+                    SULFURAS_NAME -> {
+                        // The Sulfuras, Hand of Ragnaros is pure. Nothing changes
+                    }
 
-                else -> updateGenericItem(item)
+                    else -> updateGenericItem(item)
+                }
             }
         }
     }
@@ -49,6 +53,14 @@ private fun updateBackstagePass(item: Item) {
             else -> quality + 1
         }
     )
+    item.sellIn--
+}
+
+private fun updateConjuredItem(item: Item) {
+    require(item.isConjured) {
+        "What's so special about ${item.name}? That's is not magical!"
+    }
+
     item.sellIn--
 }
 
