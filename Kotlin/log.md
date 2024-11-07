@@ -42,7 +42,7 @@ can always be done after.
 [ ] Finalize everything with a reflection on this exercise
 [ ] Add docs to quality. It is between 0 and 50, except for certain items
 
-Time log: 1:15 on the first two tasks and some more (undefined) work
+Time log: 1:30 on the first two tasks and some more (undefined) work
 
 ## Now what?
 There are shared properties for all items, and for almost all items, the sell-in date decreases by 
@@ -58,3 +58,6 @@ account for that in a shared `decreaseSellIn()` method and test accordingly.
 However, you also need to take the sell-in date into account for updating the quality of an item. So
 having a separate sell-in method would be an afterthought.
 
+## Another note
+I didn't commit on "red", "green" _and_ "refactor". Only on the latter two. Will take that into account 
+for later.
