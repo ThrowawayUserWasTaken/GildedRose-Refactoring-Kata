@@ -34,7 +34,7 @@ For context, my approach to changes is: commit quick little chunks. Rebasing or 
 can always be done after.
 
 ## To do for now
-[ ] Enforce 80 quality on Sulfarases
+[x] Enforce 80 quality on Sulfarases
 [ ] Replace all names of items with the defined constants
 
 ## Now what?

@@ -14,6 +14,14 @@ class GildedRose(var items: List<Item>) {
                     AGED_BRIE_NAME -> updateAgedBrie(item)
                     BACKSTAGE_PASS_NAME -> updateBackstagePass(item)
                     SULFURAS_NAME -> {
+                        /**
+                         * Preferably, you would perform in a constructor of a Sulfuras item. But
+                         * for reasons explained later, this does not work well here.
+                         */
+                        check(item.quality == SULFURAS_QUALITY) {
+                            "No Sulfuras, Hand of Ragnaros knock-offs with quality ${item.quality} are allowed"
+                        }
+
                         // The Sulfuras, Hand of Ragnaros is pure. Nothing changes
                     }
 
@@ -25,6 +33,7 @@ class GildedRose(var items: List<Item>) {
 }
 
 internal const val MAXIMAL_QUALITY = 50
+internal const val SULFURAS_QUALITY = 80
 
 /** Yeah, this could also be an extension method of some sort. */
 private fun updateAgedBrie(item: Item) {

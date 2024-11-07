@@ -106,9 +106,8 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun `The quality of Sulfuras is consistent`() {
-        // Yeah, the quality of this item is not set to 80. Will do so later
-        val item = Item(name = "Sulfuras, Hand of Ragnaros", sellIn = 12, quality = 9000)
+    fun `The quality of Sulfuras is always 80`() {
+        val item = Item(name = SULFURAS_NAME, sellIn = 12, quality = SULFURAS_QUALITY)
         val expectedQuality = item.quality
 
         val items = listOf(item)
@@ -120,8 +119,7 @@ internal class GildedRoseTest {
 
     @Test
     fun `The sell-in date of Sulfuras does not change`() {
-        // Yeah, the quality of this item is not set to 80. Will do so later
-        val item = Item(name = "Sulfuras, Hand of Ragnaros", sellIn = 99, quality = 9000)
+        val item = Item(name = SULFURAS_NAME, sellIn = 12, quality = SULFURAS_QUALITY)
         val expectedSellIn = item.sellIn
 
         val items = listOf(item)
@@ -130,6 +128,7 @@ internal class GildedRoseTest {
 
         assertEquals(expectedSellIn, app.items[0].sellIn)
     }
+
     @Test
     fun `The quality of a backstage pass increases by 1 when the sell-in data is more than 10 days`() {
         val item = Item(
