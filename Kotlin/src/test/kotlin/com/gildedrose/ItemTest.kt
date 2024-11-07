@@ -27,6 +27,7 @@ internal class ItemTest {
             assertFalse(item.isConjured)
         }
 
+        // TODO: wait! We are now testing the items through the app. Fix this!
         @ParameterizedTest
         @ValueSource(ints = [-9000, -3, -2, -1, 0, 5, 23])
         fun `The sell-in date always decreases by one after a quality update`(sellIn: Int) {
