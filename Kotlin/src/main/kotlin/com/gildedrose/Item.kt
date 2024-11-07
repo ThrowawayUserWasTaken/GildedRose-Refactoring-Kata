@@ -31,15 +31,13 @@ internal fun Item.updateAgedBrie() {
     sellIn--
 }
 
-internal fun updateBackstagePass(item: Item) {
-    require(item.name == BACKSTAGE_PASS_NAME) {
-        "You can hear something is off: ${item.name} does not sound like $BACKSTAGE_PASS_NAME to me!"
+internal fun Item.updateBackstagePass() {
+    require(name == BACKSTAGE_PASS_NAME) {
+        "You can hear something is off: $name does not sound like $BACKSTAGE_PASS_NAME to me!"
     }
-    val sellIn = item.sellIn
-    val quality = item.quality
 
     // The quality of a Backstage pass can not exceed 50
-    item.quality = min(
+    quality = min(
         MAXIMAL_QUALITY,
         when {
             sellIn <= 0 -> 0
@@ -48,7 +46,7 @@ internal fun updateBackstagePass(item: Item) {
             else -> quality + 1
         }
     )
-    item.sellIn--
+    sellIn--
 }
 
 internal fun Item.updateConjuredItem() {

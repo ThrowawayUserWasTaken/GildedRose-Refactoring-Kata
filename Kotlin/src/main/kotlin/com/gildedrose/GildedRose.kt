@@ -9,7 +9,7 @@ class GildedRose(var items: List<Item>) {
             } else {
                 when (item.name) {
                     AGED_BRIE_NAME -> item.updateAgedBrie()
-                    BACKSTAGE_PASS_NAME -> updateBackstagePass(item)
+                    BACKSTAGE_PASS_NAME -> item.updateBackstagePass()
                     SULFURAS_NAME -> {
                         /**
                          * Preferably, you would perform in a constructor of a Sulfuras item. But
