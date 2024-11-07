@@ -66,6 +66,18 @@ internal fun Item.updateConjuredItem() {
     sellIn--
 }
 
+/**
+ * The Sulfuras, Hand of Ragnaros is pure. Nothing changes. We just verify it.
+ */
+internal fun Item.verifySulfuras() {
+    check(name == SULFURAS_NAME) {
+        "That's weird, this item ($name) is not $SULFURAS_NAME"
+    }
+    check(quality == SULFURAS_QUALITY) {
+        "No Sulfuras, Hand of Ragnaros knock-offs with quality $quality are allowed"
+    }
+}
+
 internal fun updateGenericItem(item: Item) {
     val sellIn = item.sellIn
     val quality = item.quality

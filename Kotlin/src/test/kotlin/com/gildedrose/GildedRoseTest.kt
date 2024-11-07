@@ -1,9 +1,8 @@
 package com.gildedrose
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -82,7 +81,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun `The quality of Sulfuras is always 80`() {
+    fun `The quality of Sulfuras is always 80 after updating the quality`() {
         val item = Item(name = SULFURAS_NAME, sellIn = 12, quality = SULFURAS_QUALITY)
         val expectedQuality = item.quality
 
@@ -91,6 +90,36 @@ internal class GildedRoseTest {
         app.updateQuality()
 
         assertEquals(expectedQuality, app.items[0].quality)
+    }
+
+    @Test
+    fun `The Sulfuras has a very specific name`() {
+        val name = "Sultana, Hand of Ragnarok"
+        val item = Item(name = name, sellIn = 12, quality = SULFURAS_QUALITY)
+
+        val exception = assertThrows<IllegalStateException> {
+            item.verifySulfuras()
+        }
+
+        assertEquals(
+            "That's weird, this item ($name) is not $SULFURAS_NAME",
+            exception.message,
+        )
+    }
+
+    @Test
+    fun `The quality of Sulfuras should be 80`() {
+        val nonSulfurasQuality = SULFURAS_QUALITY - 1
+        val item = Item(name = SULFURAS_NAME, sellIn = 12, quality = nonSulfurasQuality)
+
+        val exception = assertThrows<IllegalStateException> {
+            item.verifySulfuras()
+        }
+
+        assertEquals(
+            "No Sulfuras, Hand of Ragnaros knock-offs with quality $nonSulfurasQuality are allowed",
+            exception.message,
+        )
     }
 
     @Test

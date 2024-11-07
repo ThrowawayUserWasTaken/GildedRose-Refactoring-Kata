@@ -10,18 +10,8 @@ class GildedRose(var items: List<Item>) {
                 when (item.name) {
                     AGED_BRIE_NAME -> item.updateAgedBrie()
                     BACKSTAGE_PASS_NAME -> item.updateBackstagePass()
-                    SULFURAS_NAME -> {
-                        /**
-                         * Preferably, you would perform in a constructor of a Sulfuras item. But
-                         * for reasons explained later, this does not work well here.
-                         */
-                        check(item.quality == SULFURAS_QUALITY) {
-                            "No Sulfuras, Hand of Ragnaros knock-offs with quality ${item.quality} are allowed"
-                        }
-
-                        // The Sulfuras, Hand of Ragnaros is pure. Nothing changes
-                    }
-
+                    // We only verify Sulfuras, Hand of Ragnaros
+                    SULFURAS_NAME -> item.verifySulfuras()
                     else -> updateGenericItem(item)
                 }
             }
