@@ -123,4 +123,128 @@ internal class ItemTest {
             )
         }
     }
+
+    @Nested
+    @DisplayName("For backstage passes")
+    inner class BackstagePassTest {
+
+        @Test
+        fun `The quality increases by 1 when the sell-in data is more than 10 days`() {
+            val item = Item(
+                name = BACKSTAGE_PASS_NAME,
+                sellIn = 11,
+                quality = 10,
+            )
+            val expectedQuality = item.quality + 1
+
+            item.updateBackstagePass()
+
+            assertEquals(expectedQuality, item.quality)
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = [6, 7, 8, 9, 10])
+        fun `The quality increases by 2 when the sell-in data is 10 days or less`(
+            sellIn: Int,
+        ) {
+            val item = Item(
+                name = BACKSTAGE_PASS_NAME,
+                sellIn = sellIn,
+                quality = 10,
+            )
+            val expectedQuality = item.quality + 2
+
+            item.updateBackstagePass()
+
+            assertEquals(expectedQuality, item.quality)
+        }
+
+        @Test
+        fun `The quality caps at 50`() {
+            val item = Item(
+                name = BACKSTAGE_PASS_NAME,
+                sellIn = 3,
+                quality = 48,
+            )
+
+            item.updateBackstagePass()
+
+            assertEquals(MAXIMAL_QUALITY, item.quality)
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = [1, 2, 3, 4, 5])
+        fun `The quality increases by 3 when the sell-in data is 5 days or less`(sellIn: Int) {
+            val item = Item(
+                name = BACKSTAGE_PASS_NAME,
+                sellIn = sellIn,
+                quality = 10,
+            )
+            val expectedQuality = item.quality + 3
+
+            item.updateBackstagePass()
+
+            assertEquals(expectedQuality, item.quality)
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = [-9000, -3, -2, -1, 0])
+        fun `The quality is zero if the sell-in date is zero or less`(sellIn: Int) {
+            val item = Item(
+                name = BACKSTAGE_PASS_NAME,
+                sellIn = sellIn,
+                quality = 10,
+            )
+
+            item.updateBackstagePass()
+
+            assertEquals(0, item.quality)
+        }
+
+        @Test
+        fun `The quality remains zero if the sell-in date is passed`() {
+            val item = Item(
+                name = BACKSTAGE_PASS_NAME,
+                sellIn = -1,
+                quality = 0,
+            )
+
+            item.updateBackstagePass()
+
+            assertEquals(0, item.quality)
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = [-9000, -3, -2, -1, 0, 5, 23])
+        fun `The sell-in date always moves back by one after the quality update`(sellIn: Int) {
+            val item = Item(
+                name = BACKSTAGE_PASS_NAME,
+                sellIn = sellIn,
+                quality = 0,
+            )
+
+            item.updateBackstagePass()
+
+            assertEquals(sellIn - 1, item.sellIn)
+        }
+
+        @Test
+        fun `Can only handle backstage passes`() {
+            val name = "Frontstage pass to a TAFKAL80ETC concert"
+            val item = Item(
+                name = name,
+                sellIn = 11,
+                quality = 10,
+            )
+            
+            val exception = assertThrows<IllegalArgumentException> {
+                item.updateBackstagePass()
+            }
+
+            assertEquals(
+                "You can hear something is off: $name does not sound like $BACKSTAGE_PASS_NAME to me!",
+                exception.message
+            )
+        }
+    }
 }

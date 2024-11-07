@@ -37,6 +37,8 @@ can always be done after.
 [x] Enforce 80 quality on Sulfarases
 [x] Replace all names of items with the defined constants
 [ ] Extract quality update to make Gilded Rose test easier to read
+    [x] `updateBackstagePass`
+    [ ] `updateGenericItem`
 [ ] Finalize everything with a reflection on this exercise
 [ ] Add docs to quality. It is between 0 and 50, except for certain items
 
