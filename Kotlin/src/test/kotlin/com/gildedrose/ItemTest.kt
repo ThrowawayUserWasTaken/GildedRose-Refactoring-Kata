@@ -306,4 +306,73 @@ internal class ItemTest {
             assertEquals(expectedSellIn, app.items[0].sellIn)
         }
     }
+
+    @Nested
+    @DisplayName("For generic items")
+    inner class GenericItemTest {
+
+        @Test
+        fun `The quality degrades by one if sell-in date passes in the future`() {
+            val item = Item(name = "we-do-not-care", sellIn = 12, quality = 4)
+            val expectedQuality = item.quality - 1
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(expectedQuality, app.items[0].quality)
+        }
+
+        @Test
+        fun `Given an item where the sell in date passes today, Then the quality degrades by one`() {
+            val item = Item(name = "we-do-not-care", sellIn = 1, quality = 4)
+            val expectedQuality = item.quality - 1
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(expectedQuality, app.items[0].quality)
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = [-9000, -3, -2, -1, 0])
+        fun `The quality degrades by two when the sell-in date is zero or less`(
+            sellIn: Int
+        ) {
+            val item = Item(name = "we-do-not-care", sellIn = sellIn, quality = 4)
+            val expectedQuality = item.quality - 2
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(expectedQuality, app.items[0].quality)
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = [-9000, -3, -2, -1, 0, 4, 8, 12, 99])
+        fun `The quality can not become negative`(sellIn: Int) {
+            val item = Item(name = "we-do-not-care", sellIn = sellIn, quality = 0)
+            val expectedQuality = item.quality
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(expectedQuality, app.items[0].quality)
+        }
+
+        @Test
+        fun `The sell-in date always decreases by one when the quality is updated`() {
+            val item = Item(name = "we-do-not-care", sellIn = 12, quality = 0)
+            val expectedSellIn = item.sellIn - 1
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(expectedSellIn, app.items[0].sellIn)
+        }
+    }
 }
