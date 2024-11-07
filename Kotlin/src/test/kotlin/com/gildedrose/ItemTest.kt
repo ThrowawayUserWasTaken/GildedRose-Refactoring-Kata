@@ -6,19 +6,81 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class ItemTest {
 
-    @Test
-    fun `An item is conjured if its name starts with Conjured`() {
-        val item = Item(name = "Conjured Mountain Dew", sellIn = 900, quality = 21)
-        assertTrue(item.isConjured)
-    }
+    @Nested
+    @DisplayName("For a conjured item")
+    inner class ConjuredItemTest {
 
-    @Test
-    fun `An item is not conjured if its name does not start with Conjured`() {
-        val item = Item(name = "Mountain Dew", sellIn = 900, quality = 20)
-        assertFalse(item.isConjured)
+        @Test
+        fun `It is conjured if its name starts with Conjured`() {
+            val item = Item(name = "Conjured Mountain Dew", sellIn = 900, quality = 21)
+            assertTrue(item.isConjured)
+        }
+
+        @Test
+        fun `It is not conjured if its name does not start with Conjured`() {
+            val item = Item(name = "Mountain Dew", sellIn = 900, quality = 20)
+            assertFalse(item.isConjured)
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = [-9000, -3, -2, -1, 0, 5, 23])
+        fun `The sell-in date always decreases by one after a quality update`(sellIn: Int) {
+            val item = Item(
+                name = CONJURED_ITEM_NAME,
+                sellIn = sellIn,
+                quality = 0,
+            )
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(sellIn - 1, app.items[0].sellIn)
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = [-5, 0, 5])
+        fun `The quality can not become negative`(sellIn: Int) {
+            val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 0)
+            val expectedQuality = item.quality
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(expectedQuality, app.items[0].quality)
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = [1, 12])
+        fun `The quality degrades by two if the sell-in date is more than 0`(sellIn: Int) {
+            val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 8)
+            val expectedQuality = item.quality - 2
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(expectedQuality, app.items[0].quality)
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = [-1, 0])
+        fun `The quality degrades by four if the sell-in date is zero or less`(sellIn: Int) {
+            val item = Item(name = CONJURED_ITEM_NAME, sellIn = sellIn, quality = 8)
+            val expectedQuality = item.quality - 4
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(expectedQuality, app.items[0].quality)
+        }
     }
 
     @Nested
