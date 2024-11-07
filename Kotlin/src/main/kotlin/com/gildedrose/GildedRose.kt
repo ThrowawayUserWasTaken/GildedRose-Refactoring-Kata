@@ -8,7 +8,7 @@ class GildedRose(var items: List<Item>) {
                 updateConjuredItem(item)
             } else {
                 when (item.name) {
-                    AGED_BRIE_NAME -> updateAgedBrie(item)
+                    AGED_BRIE_NAME -> item.updateAgedBrie()
                     BACKSTAGE_PASS_NAME -> updateBackstagePass(item)
                     SULFURAS_NAME -> {
                         /**

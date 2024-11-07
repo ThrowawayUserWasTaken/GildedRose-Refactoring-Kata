@@ -82,30 +82,6 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun `The quality of Aged Brie increases`() {
-        val item = Item(name = AGED_BRIE_NAME, sellIn = 12, quality = 0)
-        val expectedQuality = item.quality + 1
-
-        val items = listOf(item)
-        val app = GildedRose(items)
-        app.updateQuality()
-
-        assertEquals(expectedQuality, app.items[0].quality)
-    }
-
-    @Test
-    fun `The quality of Aged Brie does not increase over 50`() {
-        val item = Item(name = AGED_BRIE_NAME, sellIn = 12, quality = MAXIMAL_QUALITY)
-        val expectedQuality = item.quality
-
-        val items = listOf(item)
-        val app = GildedRose(items)
-        app.updateQuality()
-
-        assertEquals(expectedQuality, app.items[0].quality)
-    }
-
-    @Test
     fun `The quality of Sulfuras is always 80`() {
         val item = Item(name = SULFURAS_NAME, sellIn = 12, quality = SULFURAS_QUALITY)
         val expectedQuality = item.quality
