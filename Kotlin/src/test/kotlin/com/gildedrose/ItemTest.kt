@@ -247,4 +247,63 @@ internal class ItemTest {
             )
         }
     }
+
+    @Nested
+    @DisplayName("For Sulfuras, Hand of Ragnaros")
+    inner class SulfurasTest {
+
+        @Test
+        fun `The quality is always 80 after updating the quality`() {
+            val item = Item(name = SULFURAS_NAME, sellIn = 12, quality = SULFURAS_QUALITY)
+            val expectedQuality = item.quality
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(expectedQuality, app.items[0].quality)
+        }
+
+        @Test
+        fun `The name is very specific`() {
+            val name = "Sultana, Hand of Ragnarok"
+            val item = Item(name = name, sellIn = 12, quality = SULFURAS_QUALITY)
+
+            val exception = assertThrows<IllegalStateException> {
+                item.verifySulfuras()
+            }
+
+            assertEquals(
+                "That's weird, this item ($name) is not $SULFURAS_NAME",
+                exception.message,
+            )
+        }
+
+        @Test
+        fun `The quality should be 80`() {
+            val nonSulfurasQuality = SULFURAS_QUALITY - 1
+            val item = Item(name = SULFURAS_NAME, sellIn = 12, quality = nonSulfurasQuality)
+
+            val exception = assertThrows<IllegalStateException> {
+                item.verifySulfuras()
+            }
+
+            assertEquals(
+                "No Sulfuras, Hand of Ragnaros knock-offs with quality $nonSulfurasQuality are allowed",
+                exception.message,
+            )
+        }
+
+        @Test
+        fun `The sell-in date does not change`() {
+            val item = Item(name = SULFURAS_NAME, sellIn = 12, quality = SULFURAS_QUALITY)
+            val expectedSellIn = item.sellIn
+
+            val items = listOf(item)
+            val app = GildedRose(items)
+            app.updateQuality()
+
+            assertEquals(expectedSellIn, app.items[0].sellIn)
+        }
+    }
 }
