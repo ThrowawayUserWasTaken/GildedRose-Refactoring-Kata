@@ -6,15 +6,7 @@ import org.junit.jupiter.api.Test
 internal class GildedRoseTest {
 
     @Test
-    fun foo() {
-        val items = listOf(TEST_ITEM)
-        val app = GildedRose(items)
-        app.updateQuality()
-        assertEquals(TEST_ITEM_NAME, app.items[0].name)
-    }
-
-    @Test
-    fun `When we update the quality of Gilded Rose, we update the quality of all its items`() {
+    fun `When we update the quality of Gilded Rose, Then we update the quality of its inventory`() {
         // Given
         val genericItem = Item(name = "we-do-not-care", sellIn = 12, quality = 4)
         val backstagePass = Item(name = BACKSTAGE_PASS_NAME, sellIn = 5, quality = 10)
@@ -41,7 +33,6 @@ internal class GildedRoseTest {
                 updateAgedBrieQuality()
             },
         )
-        // TODO: wait, why does this work again? These are real classes, no data classes. Ah, well, for later
         assertEquals(expectedItems, gildedRose.items)
     }
 }
