@@ -3,6 +3,10 @@ package com.gildedrose
 import kotlin.math.max
 import kotlin.math.min
 
+/**
+ * The [quality] of an [Item] is between 0 and [MAXIMAL_QUALITY]. Except for a [SULFURAS_NAME] item,
+ * which has a quality of [SULFURAS_QUALITY].
+ */
 open class Item(var name: String, var sellIn: Int, var quality: Int) {
     override fun toString(): String {
         return this.name + ", " + this.sellIn + ", " + this.quality
@@ -21,7 +25,6 @@ internal val Item.isConjured
 internal const val MAXIMAL_QUALITY = 50
 internal const val SULFURAS_QUALITY = 80
 
-/** Yeah, this could also be an extension method of some sort. */
 internal fun Item.updateAgedBrieQuality() {
     require(name == AGED_BRIE_NAME) {
         "This is a stinky situation: ${name} is not $AGED_BRIE_NAME"
@@ -36,7 +39,6 @@ internal fun Item.updateBackstagePassQuality() {
         "You can hear something is off: $name does not sound like $BACKSTAGE_PASS_NAME to me!"
     }
 
-    // The quality of a Backstage pass can not exceed 50
     quality = min(
         MAXIMAL_QUALITY,
         when {
@@ -54,7 +56,6 @@ internal fun Item.updateConjuredItemQuality() {
         "What's so special about ${name}? That's is not magical!"
     }
 
-    // The quality of an item is non-negative
     quality = max(
         0,
         if (sellIn <= 0) {
@@ -79,7 +80,6 @@ internal fun Item.verifySulfuras() {
 }
 
 internal fun Item.updateGenericItemQuality() {
-    // The quality of an item is non-negative
     quality = max(
         0,
         if (sellIn <= 0) {

@@ -40,7 +40,7 @@ can always be done after.
     [x] `updateBackstagePass`
     [x] `updateGenericItem`
 [ ] Finalize everything with a reflection on this exercise
-[ ] Add docs to quality. It is between 0 and 50, except for certain items
+[x] Add docs to quality. It is between 0 and 50, except for certain items
 
 Time log: 2:00 today
 
