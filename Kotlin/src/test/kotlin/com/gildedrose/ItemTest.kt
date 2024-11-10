@@ -352,3 +352,5 @@ internal class ItemTest {
         }
     }
 }
+
+private const val CONJURED_ITEM_NAME = "Conjured Pumpkin Spice Latte"
