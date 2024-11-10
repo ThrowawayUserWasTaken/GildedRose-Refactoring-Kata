@@ -53,7 +53,7 @@ internal fun Item.updateBackstagePassQuality() {
 
 internal fun Item.updateConjuredItemQuality() {
     require(isConjured) {
-        "What's so special about ${name}? That's is not magical!"
+        "What's so special about ${name}? That's not a magical $CONJURED_PREFIX item!"
     }
 
     quality = max(
