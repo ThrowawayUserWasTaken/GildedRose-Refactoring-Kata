@@ -74,7 +74,7 @@ having a separate sell-in method would be an afterthought.
 # Nov 10th
 
 Started: 16:20
-Break: 16:47 - 16:56
+Break: 16:47 - 16:56, 17:25
 Finished: TBD
 
 To-do list:
