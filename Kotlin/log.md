@@ -59,6 +59,9 @@ However, you also need to take the sell-in date into account for updating the qu
 having a separate sell-in method would be an afterthought.
 
 # Nov 10th
+Started: 16:20
+Finished: TBD
+
 To-do list:
 [ ] Finish to-dos from Nov 7th 
 [ ] Add "future improvements"
