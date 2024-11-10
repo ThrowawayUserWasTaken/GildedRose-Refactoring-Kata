@@ -1,3 +1,9 @@
+# Prelude
+
+Please read [my reflection](reflection.md) for a reflection on this exercise. All stuff in here is
+more of a background of what was going through my mind while I worked on this exercise. Feel free to
+read it, though!
+
 # Log to keep some notes.
 
 - Just noticed the "./gradlew -q text" command in the README does not work. Won't fix that. Will
@@ -49,7 +55,7 @@ can always be done after.
 [x] Extract quality update to make Gilded Rose test easier to read
 [x] `updateBackstagePass`
 [x] `updateGenericItem`
-[ ] Finalize everything with a reflection on this exercise
+[x] Finalize everything with a reflection on this exercise
 [x] Add docs to quality. It is between 0 and 50, except for certain items
 
 Time log: 2:00 today
@@ -59,8 +65,6 @@ Time log: 2:00 today
 There are shared properties for all items, and for almost all items, the sell-in date decreases by
 one after updating the quality. The way I've set it up now, all items have their own quality update,
 which you could argue is overkill. But I think it's better, and I have my reasoning.
-
-// TODO: update this reasoning a bit more
 
 ### The business rules are defined for specific items
 
@@ -78,6 +82,6 @@ Break: 16:47 - 16:56, 17:25 - 17:34
 Finished: TBD
 
 To-do list:
-[ ] Finish to-dos from Nov 7th
-[ ] Add "future improvements"
-[ ] Add reflection
+[x] Finish to-dos from Nov 7th
+[x] Add "future improvements"
+[x] Add reflection
