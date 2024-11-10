@@ -58,6 +58,8 @@ account for that in a shared `decreaseSellIn()` method and test accordingly.
 However, you also need to take the sell-in date into account for updating the quality of an item. So
 having a separate sell-in method would be an afterthought.
 
-## Another note
-I didn't commit on "red", "green" _and_ "refactor". Only on the latter two. Will take that into account 
-for later.
+# Nov 10th
+To-do list:
+[ ] Finish to-dos from Nov 7th 
+[ ] Add "future improvements"
+[ ] Add reflection
