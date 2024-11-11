@@ -11,7 +11,7 @@ questions or anything, feel free to bring these up during our interview on Tuesd
 
 When we update the Gilded Rose inventory, we update the quality of all of the items. However, you
 might spot that the Sulfuras, Hand of Ragnaros will not update (as per the requirements) – we just
-verify we only sell real Sulfurases. This might safe them from a hefty Belastingdienst fine, or they
+verify we only sell real Sulfurases. This might save them from a hefty Belastingdienst fine, or they
 might go under because the cannot sell knock-offs anymore. We'll have to wait and see.
 
 ### Rationale
